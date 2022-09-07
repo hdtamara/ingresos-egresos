@@ -21,12 +21,12 @@ public class UsuarioRestController {
     public List<Usuario> findAll(){
         return  usuarioService.findAll();
     }
-    @PostMapping("/Usuario")
-    public Usuario createUsuario(Usuario usuario) {
+    @PostMapping("/usuario")
+    public Usuario createUsuario(@RequestBody Usuario usuario) {
         return usuarioService.createUsuario(usuario);
     }
-    @PutMapping("/Usuario/{id}")
-    public Usuario updateUsuario(int id, Usuario usuario) {
+    @PutMapping("/usuario/{id}")
+    public Usuario updateUsuario(@PathVariable int id, Usuario usuario) {
         return usuarioService.updateUsuario(id, usuario);
     }
     @DeleteMapping("/Usuario/{id}")
