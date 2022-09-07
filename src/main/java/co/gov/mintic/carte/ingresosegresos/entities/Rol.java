@@ -1,4 +1,4 @@
-package co.gov.mintic.carte.ingresosegresos.entity;
+package co.gov.mintic.carte.ingresosegresos.entities;
 
 import javax.persistence.*;
 

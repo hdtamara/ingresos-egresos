@@ -1,11 +1,10 @@
 package co.gov.mintic.carte.ingresosegresos.controller;
 
-import co.gov.mintic.carte.ingresosegresos.entity.Rol;
+import co.gov.mintic.carte.ingresosegresos.entities.Rol;
 import co.gov.mintic.carte.ingresosegresos.services.IRolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,7 +25,7 @@ public class RolRestController {
     }
 
     @PostMapping("/rol")
-    public Rol createRol(@PathVariable Rol rol){
+    public Rol createRol(@RequestBody Rol rol){
         return  rolService.createRol(rol);
     }
 

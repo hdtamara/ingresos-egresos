@@ -1,17 +1,10 @@
 package co.gov.mintic.carte.ingresosegresos.controller;
 
-import co.gov.mintic.carte.ingresosegresos.entity.Perfil;
-import co.gov.mintic.carte.ingresosegresos.entity.Rol;
-import co.gov.mintic.carte.ingresosegresos.entity.TipoDocumento;
-import co.gov.mintic.carte.ingresosegresos.entity.Usuario;
+import co.gov.mintic.carte.ingresosegresos.entities.Usuario;
 import co.gov.mintic.carte.ingresosegresos.services.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,5 +20,17 @@ public class UsuarioRestController {
     @GetMapping("/usuario")
     public List<Usuario> findAll(){
         return  usuarioService.findAll();
+    }
+    @PostMapping("/Usuario")
+    public Usuario createUsuario(Usuario usuario) {
+        return usuarioService.createUsuario(usuario);
+    }
+    @PutMapping("/Usuario/{id}")
+    public Usuario updateUsuario(int id, Usuario usuario) {
+        return usuarioService.updateUsuario(id, usuario);
+    }
+    @DeleteMapping("/Usuario/{id}")
+    public void deleteUsuario(int id) {
+        usuarioService.deleteUsuario(id);
     }
 }

@@ -1,9 +1,19 @@
-package co.gov.mintic.carte.ingresosegresos.entity;
+package co.gov.mintic.carte.ingresosegresos.entities;
 
+import javax.persistence.*;
+
+@Entity //Lo convierte en entidad
+@Table(name = "tipo_documentos")//Cambia el nombre de la tabla
 public class TipoDocumento {
+    @Id //Llave primaria
+    @GeneratedValue(strategy = GenerationType.IDENTITY) /*autoincrementable */
+    @Column(name = "id_tipo_documento")
     private long idTipoDocumento;
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
+    @Column(name = "siglas",nullable = false)
     private String siglas;
+    @Column(name="estado")
     private boolean estado;
 
     public long getIdTipoDocumento() {

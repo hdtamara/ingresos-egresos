@@ -1,56 +1,44 @@
 package co.gov.mintic.carte.ingresosegresos.services;
 
-import co.gov.mintic.carte.ingresosegresos.entity.TipoDocumento;
+import co.gov.mintic.carte.ingresosegresos.entities.TipoDocumento;
+import co.gov.mintic.carte.ingresosegresos.repository.ITipoDocumentoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class TipoDocumentoService implements  ITipoDocumentoService{
+    @Autowired
+    private ITipoDocumentoRepository tipoDocumentoRepository;
     @Override
     public TipoDocumento findById(int id) {
-        TipoDocumento tipoDocumento = new TipoDocumento();
-        tipoDocumento.setIdTipoDocumento(id);
-        tipoDocumento.setDescripcion("Admin");
-        tipoDocumento.setEstado(true);
-        return tipoDocumento;
+        Optional<TipoDocumento> tipoDocumento = tipoDocumentoRepository.findById((long) id);
+        return tipoDocumento.get();
     }
 
     @Override
     public List<TipoDocumento> findAll() {
-        List<TipoDocumento> tipoDocumentos = new ArrayList<TipoDocumento>();
-        TipoDocumento tipoDocumento1 = new TipoDocumento();
-        tipoDocumento1.setIdTipoDocumento(1);
-        tipoDocumento1.setDescripcion("Admin");
-        tipoDocumento1.setEstado(true);
-        tipoDocumentos.add(tipoDocumento1);
-        TipoDocumento tipoDocumento2 = new TipoDocumento();
-        tipoDocumento2.setIdTipoDocumento(2);
-        tipoDocumento2.setDescripcion("User");
-        tipoDocumento2.setEstado(true);
-        tipoDocumentos.add(tipoDocumento2);
+        List<TipoDocumento> tipoDocumentos = (List<TipoDocumento>) tipoDocumentoRepository.findAll();
         return tipoDocumentos;
     }
 
     @Override
     public TipoDocumento createTipoDocumento(TipoDocumento tipoDocumento) {
-        TipoDocumento newTipoDocumento = new TipoDocumento();
-        newTipoDocumento.setIdTipoDocumento(tipoDocumento.getIdTipoDocumento());
-        newTipoDocumento.setDescripcion(tipoDocumento.getDescripcion());
-        newTipoDocumento.setEstado(tipoDocumento.isEstado());
+        TipoDocumento newTipoDocumento = tipoDocumentoRepository.save(tipoDocumento);
         return newTipoDocumento;
     }
 
     @Override
     public TipoDocumento updateTipoDocumento(int id, TipoDocumento tipoDocumento) {
-        TipoDocumento putTipoDocumento = findById(id);
-        putTipoDocumento.setDescripcion("Admin");
-        putTipoDocumento.setEstado(true);
+        TipoDocumento putTipoDocumento = tipoDocumentoRepository.save(tipoDocumento);
         return putTipoDocumento;
     }
 
     @Override
     public void deleteRol(int id) {
-        TipoDocumento deleteRol = findById(id);
+        tipoDocumentoRepository.deleteById((long) id);
     }
 }

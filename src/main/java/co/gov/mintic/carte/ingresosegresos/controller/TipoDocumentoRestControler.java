@@ -1,16 +1,14 @@
 package co.gov.mintic.carte.ingresosegresos.controller;
 
-import co.gov.mintic.carte.ingresosegresos.entity.Rol;
-import co.gov.mintic.carte.ingresosegresos.entity.TipoDocumento;
+import co.gov.mintic.carte.ingresosegresos.entities.TipoDocumento;
 import co.gov.mintic.carte.ingresosegresos.services.ITipoDocumentoService;
-import co.gov.mintic.carte.ingresosegresos.services.TipoDocumentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class TipoDocumentoRestControler {
     @Autowired
     private ITipoDocumentoService tipoDocumentoService;
@@ -26,7 +24,7 @@ public class TipoDocumentoRestControler {
     }
 
     @PostMapping("/tipoDocumento")
-    public TipoDocumento createTipoDocumento(@PathVariable TipoDocumento tipoDocumento){
+    public TipoDocumento createTipoDocumento(@RequestBody TipoDocumento tipoDocumento){
         return  tipoDocumentoService.createTipoDocumento(tipoDocumento);
     }
 

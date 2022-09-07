@@ -1,17 +1,35 @@
-package co.gov.mintic.carte.ingresosegresos.entity;
+package co.gov.mintic.carte.ingresosegresos.entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private long idUsuario;
+    @Column(name = "nombre",nullable = false)
     private String nombre;
+    @Column(name = "apellido",nullable = false)
     private String apellido;
+    @ManyToOne
+    @JoinColumn(name="id_tipo_documento",nullable = false)
     private TipoDocumento tipoDocumento;
+    @Column(name = "cedula",unique = true,nullable = false)
     private String cedula;
+    @Column(name = "usuario", nullable = false)
     private String usuario;
+    @Column(name = "password", nullable = false)
     private String password;
+    @ManyToOne
+    @JoinColumn(name = "id_rol")
     private Rol rol;
+    @Column(name = "estado")
     private boolean estado;
-
+    @Column(name = "perfil")
+    private Perfil perfil;
+    @Column(name = "correo")
     private  String correo;
 
     public long getIdUsuario() {
@@ -85,8 +103,6 @@ public class Usuario {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-
-    private  Perfil perfil;
 
     public Perfil getPerfil() {
         return perfil;
